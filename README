@@ -1,0 +1,26 @@
+Each variable provides important insights into the honey production industry.
+Here's a brief overview of what each variable represents:
+
+numcol (Number of Honey Producing Colonies):
+    This measures the maximum number of bee colonies that were used for honey production during the year.
+    It includes colonies from which honey was harvested, even if they did not survive the entire year.
+
+yieldpercol (Honey Yield Per Colony):
+    This indicates the average amount of honey, in pounds, produced by each colony.
+
+totalprod (Total Production):
+    Calculated as numcol multiplied by yieldpercol, this represents the total honey production in pounds.
+
+stocks (Stocks Held by Producers):
+    This refers to the quantity of honey, in pounds, that is held in inventory by producers.
+
+priceperlb (Average Price Per Pound):
+    This is the average market price per pound of honey, calculated based on expanded sales.
+    It's a reflection of the market value of honey.
+
+prodvalue (Value of Production):
+    This is the total monetary value of the honey production, calculated as totalprod multiplied
+    by priceperlb. It represents the total revenue generated from honey production.
+
+Each of these variables is crucial for understanding different aspects of the
+honey production industry, such as productivity, market dynamics, and economic value.
