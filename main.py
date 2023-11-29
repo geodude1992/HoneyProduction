@@ -24,47 +24,96 @@ print(df.head)
 
 
 
-'''
-    Average production of '''
-# average production of honey per year using .groupby() method provided by pandas to get the mean per year
-prod_per_year = df.groupby('year').totalprod.mean().reset_index()
-
-# total production of honey per year using .groupby() method provided by pandas to get the mean per year
-prod_per_year = df.groupby('year').totalprod.sum().reset_index()
-
-# columnOfInterest = df['columnName'] then reshape it to get it into the right format
-X = prod_per_year['year']
-#X1 = total_prod_per_year['year']
-X = X.values.reshape(-1, 1)
-#X1 = X1.values.reshape(-1, 1)
-
-# total product per year
-y = prod_per_year['totalprod']
-#y1 = total_prod_per_year['totalprod']
-
-
-# Using scatter(), plot y vs X as a scatterplot.
 """
-    ScatterPlot Using Plotly    
+    Calculating the average (mean) total honey production per year across all states
 """
-# Create a scatter plot
-scatter = go.Scatter(x=X.ravel(), y=y, mode='markers', name='Total Production')
+def average_production():
+    df = pd.read_csv("honeyproduction.csv")
+    # average production of honey per year using .groupby() method provided by pandas to get the mean per year
+    prod_per_year = df.groupby('year').totalprod.mean().reset_index()
 
-# Create a figure
-fig = go.Figure(data=scatter)
+    # total production of honey per year using .groupby() method provided by pandas to get the mean per year
+    prod_per_year = df.groupby('year').totalprod.sum().reset_index()
 
-# Update layout of the figure
-fig.update_layout(
-    title='Average Honey Production per Year across all states',
-    #title='Total Honey Production per Year across all states',
-    xaxis_title='Year',
-    yaxis_title='Average Production (in pounds)',
-    #yaxis_title='Average Production (in pounds)',
-    hovermode='closest'
-)
+    # columnOfInterest = df['columnName'] then reshape it to get it into the right format
+    X = prod_per_year['year']
+    #X1 = total_prod_per_year['year']
+    X = X.values.reshape(-1, 1)
+    #X1 = X1.values.reshape(-1, 1)
 
-# Show the figure
-fig.show()
+    # total product per year
+    y = prod_per_year['totalprod']
+    #y1 = total_prod_per_year['totalprod']
+
+    # Using scatter(), plot y vs X as a scatterplot.
+    """
+        ScatterPlot Using Plotly    
+    """
+    # Create a scatter plot
+    scatter = go.Scatter(x=X.ravel(), y=y, mode='markers', name='Total Production')
+
+    # Create a figure
+    fig = go.Figure(data=scatter)
+
+    # Update layout of the figure
+    fig.update_layout(
+        title='Average Honey Production per Year across all states',
+        #title='Total Honey Production per Year across all states',
+        xaxis_title='Year',
+        yaxis_title='Average Production (in pounds)',
+        #yaxis_title='Average Production (in pounds)',
+        hovermode='closest'
+    )
+
+    # Show the figure
+    fig.show()
+
+
+"""
+    Calculating the Total sum honey production per year across all states
+"""
+
+
+def average_production():
+    df = pd.read_csv("honeyproduction.csv")
+    # average production of honey per year using .groupby() method provided by pandas to get the mean per year
+    prod_per_year = df.groupby('year').totalprod.mean().reset_index()
+
+    # total production of honey per year using .groupby() method provided by pandas to get the mean per year
+    prod_per_year = df.groupby('year').totalprod.sum().reset_index()
+
+    # columnOfInterest = df['columnName'] then reshape it to get it into the right format
+    X = prod_per_year['year']
+    # X1 = total_prod_per_year['year']
+    X = X.values.reshape(-1, 1)
+    # X1 = X1.values.reshape(-1, 1)
+
+    # total product per year
+    y = prod_per_year['totalprod']
+    # y1 = total_prod_per_year['totalprod']
+
+    # Using scatter(), plot y vs X as a scatterplot.
+    """
+        ScatterPlot Using Plotly    
+    """
+    # Create a scatter plot
+    scatter = go.Scatter(x=X.ravel(), y=y, mode='markers', name='Total Production')
+
+    # Create a figure
+    fig = go.Figure(data=scatter)
+
+    # Update layout of the figure
+    fig.update_layout(
+        title='Average Honey Production per Year across all states',
+        # title='Total Honey Production per Year across all states',
+        xaxis_title='Year',
+        yaxis_title='Average Production (in pounds)',
+        # yaxis_title='Average Production (in pounds)',
+        hovermode='closest'
+    )
+
+    # Show the figure
+    fig.show()
 
 
 
