@@ -54,7 +54,7 @@ fig.update_layout(
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 """
@@ -88,7 +88,7 @@ fig.update_layout(
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 
@@ -139,14 +139,14 @@ fig = go.Figure(data=[scatter, line])
 
 # Update layout of the figure
 fig.update_layout(
-    title='Average Honey Production per Year across all states Linear Model',
+    title='Total Honey Production per Year across all states Linear Model',
     xaxis_title='Year',
-    yaxis_title='Average Production (in pounds)',
+    yaxis_title='Total Production (in pounds)',
     hovermode='closest'
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 
@@ -156,7 +156,7 @@ fig.show()
 """
 # production of honey has been in decline, according to this linear model.
 # Let’s predict what the year 2050 may look like in terms of honey production.
-X_future = np.array(range(2013, 2040))
+X_future = np.array(range(2023, 2050))
 # You can think of reshape() as rotating this array. Rather than one big row of numbers,
 # X_future is now a big column of numbers — there’s one number in each row.
 X_future = X_future.reshape(-1, 1)
@@ -173,15 +173,15 @@ fig.add_trace(future_line)
 
 # Update the figure layout to accommodate the new data
 fig.update_layout(
-    title='Average Honey Production Forecast (1998-2050)',
+    title='Total Honey Production Forecast (2023-2050)',
     xaxis_title='Year',
-    yaxis_title='Average Production (in pounds)',
+    yaxis_title='Total Production (in pounds)',
     hovermode='closest',
     paper_bgcolor="#EBA937"
 )
 
 # Show the updated figure
-fig.show()
+#fig.show()
 
 
 
@@ -213,13 +213,13 @@ fig = go.Figure(data=stocks_bar)
 
 # Update layout of the figure
 fig.update_layout(
-    title='Total Honey Stocks per Year (1998-2012)',
+    title='Total Honey Stocks per Year (1998-2022)',
     xaxis_title='Year',
     yaxis_title='Total Stocks (in pounds)',
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 
@@ -252,7 +252,7 @@ for i, state in enumerate(states):
 
 # Update layout of the figure
 fig.update_layout(
-    title='Total Honey Produced by State between 1998 and 2012',
+    title='Total Honey Produced by State between 1998 and 2022',
     xaxis_title='Year',
     yaxis_title='Total Production (in pounds)',
     hovermode='closest'
@@ -272,13 +272,17 @@ fig.show()
     He called them box-and-whisker plots, and they were part of his 
     exploratory data analysis approach.
 """
+# Handle non-finite values in 'year'
+df['year'] = pd.to_numeric(df['year'], errors='coerce')  # Coerce invalid values to NaN
+df = df.dropna(subset=['year'])  # Drop rows with NaN in 'year'
+df['year'] = df['year'].astype(int)  # Convert to integer
+
 # Get unique years and sort them
 years = df['year'].unique()
 years.sort()
 
-# Generate a list of colors from a (rainbow) color scale
-#colors = px.colors.sequential.Rainbow
-colors = px.colors.qualitative.Plotly
+# Generate a list of colors from a rainbow color scale
+colors = px.colors.sequential.Rainbow
 
 # Normalize the years to the range of the color scale
 normalized_years = (years - years.min()) / (years.max() - years.min())
@@ -295,7 +299,7 @@ for i, year in enumerate(years):
 
 # Update layout of the figure
 fig.update_layout(
-    title='Average Yield per Colony Per Year',
+    title='Distribution of Yield per Colony Per Year',
     xaxis_title='Year',
     yaxis_title='Yield per Colony',
     showlegend=False
@@ -303,7 +307,5 @@ fig.update_layout(
 
 # Show the figure
 fig.show()
-
-
 
 
