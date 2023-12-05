@@ -233,9 +233,9 @@ total_prod_per_year_state = df.groupby(['year', 'state'])['totalprod'].sum().res
 
 # Prepare a list of states and a color palette
 states = total_prod_per_year_state['state'].unique()
-colors = px.colors.qualitative.Plotly
+#colors = px.colors.qualitative.Plotly
 # Rainbow colors
-#colors = px.colors.sequential.Rainbow
+colors = px.colors.sequential.Rainbow
 
 
 # Create a figure
