@@ -177,11 +177,10 @@ fig.update_layout(
     xaxis_title='Year',
     yaxis_title='Total Production (in pounds)',
     hovermode='closest',
-    paper_bgcolor="#EBA937"
 )
 
 # Show the updated figure
-#fig.show()
+fig.show()
 
 
 
@@ -219,7 +218,7 @@ fig.update_layout(
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 
@@ -258,18 +257,20 @@ fig.update_layout(
     title='Total Honey Produced by State between 1998 and 2022',
     xaxis_title='Year',
     yaxis_title='Total Production (in pounds)',
-    hovermode='closest'
+    hovermode='closest',
+    paper_bgcolor="#ffffff",
+    plot_bgcolor='#666666'
 )
 
 # Show the figure
-fig.show()
+#fig.show()
 
 
 
 
 
 """
-    Average Yield per Colony Per Year Using Box Plots
+    Yield per Colony Per Year Using Box Plots
     
     Box plots were invented by John Tukey, a famous statistician, in 1970. 
     He called them box-and-whisker plots, and they were part of his 
@@ -306,10 +307,62 @@ fig.update_layout(
     title='Distribution of Yield per Colony Per Year',
     xaxis_title='Year',
     yaxis_title='Yield per Colony',
-    showlegend=False
+    showlegend=False,
+    paper_bgcolor="#FFFFFF",
+    plot_bgcolor='#666666'
 )
+
+# Show the figure
+#fig.show()
+
+
+
+
+"""
+    Total Number of Colonies Per Year LINE GRAPH
+"""
+# Calculate total number of colonies per year
+total_colonies_per_year = df.groupby('year')['numcol'].sum().reset_index()
+
+# Create a line plot
+fig = px.line(total_colonies_per_year, x='year', y='numcol',
+              title='Total Number of Honey Producing Colonies Per Year',
+              labels={'numcol': 'Total Number of Colonies'})
 
 # Show the figure
 fig.show()
 
+
+
+"""
+    Total Number of Colonies Per Year BAR GRAPH
+"""
+# Calculate total number of colonies per year
+total_colonies_per_year = df.groupby('year')['numcol'].sum().reset_index()
+
+# Define your start and end colors in hex
+start_color = '#EBA937'
+end_color = '#9B5E0F'
+
+# Function to interpolate between colors
+def interpolate_color(start_color, end_color, factor: float):
+    start_rgb = np.array([int(start_color[i:i+2], 16) for i in (1, 3, 5)])
+    end_rgb = np.array([int(end_color[i:i+2], 16) for i in (1, 3, 5)])
+    rgb = (1 - factor) * start_rgb + factor * end_rgb
+    return '#{:02x}{:02x}{:02x}'.format(int(rgb[0]), int(rgb[1]), int(rgb[2]))
+
+# Generate colors for each bar
+n = len(total_colonies_per_year)
+bar_colors = [interpolate_color(start_color, end_color, i / (n - 1)) for i in range(n)]
+
+# Create a bar plot
+fig = px.bar(total_colonies_per_year, x='year', y='numcol',
+             title='Total Number of Honey Producing Colonies Per Year',
+             labels={'numcol': 'Total Number of Colonies'})
+
+# Assign the gradient colors to each bar
+fig.update_traces(marker_color=bar_colors)
+
+# Show the figure
+fig.show()
 
