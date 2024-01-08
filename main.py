@@ -11,9 +11,8 @@ from sklearn import linear_model
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Dataset Honey Production in the USA (1998-2012)
-# Source https://www.kaggle.com/datasets/jessicali9530/honey-production
-# csv file updated (2013-2022) by Jeff Kim, Ren Yamasaki, Johnerson Li, Jovanni Garcia
+# Dataset Honey Production in the USA (1998-2022)
+# Source https://usda.library.cornell.edu/concern/publications/m613mx60p
 df = pd.read_csv("honeyproduction.csv")
 
 # print csv header to console: state, numcol ,yieldpercol, totalprod, stocks, priceperlb, prodvalue, year
